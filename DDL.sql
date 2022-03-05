@@ -86,7 +86,7 @@ CREATE TABLE trabajador(
 	telefono varchar(15) CHECK (LENGTH(telefono) >= 9),
 	domicilio varchar(200),
 	correo varchar(320),
-	id_oficina varchar(4),
+	id_oficina varchar(12) NOT NULL,
 	
 	CONSTRAINT pk_trabajador PRIMARY KEY (id_trabajador),
 	CONSTRAINT fk_id_oficina FOREIGN KEY (id_oficina) REFERENCES oficina(id_oficina)
@@ -300,13 +300,9 @@ CREATE TABLE contable(
 CREATE TABLE gestor(
 	id_trabajador int,
 	especialidad varchar(100),
-	id_oficina varchar NOT NULL,
 	
 	CONSTRAINT pk_gestor PRIMARY KEY (id_trabajador),
 	CONSTRAINT fk_id_trabajador FOREIGN KEY (id_trabajador) REFERENCES trabajador(id_trabajador)
-	ON DELETE CASCADE
-	ON UPDATE CASCADE,
-	CONSTRAINT fk_id_oficina FOREIGN KEY (id_oficina) REFERENCES oficina(id_oficina)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
