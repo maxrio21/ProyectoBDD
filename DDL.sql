@@ -146,12 +146,16 @@ CREATE TABLE cuenta_bancaria(
 	contraseña numeric(6) CHECK (LENGTH(CAST(contraseña AS VARCHAR)) = 6),
 	id_cliente int NOT NULL,
 	id_sucursal varchar(4) NOT NULL,
+	id_entidad_bancaria varchar(4) NOT NULL,
 
 	CONSTRAINT pk_cuenta_bancaria PRIMARY KEY (id_cuenta),
 	CONSTRAINT fk_cliente FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
 	ON DELETE NO ACTION
 	ON UPDATE CASCADE,
 	CONSTRAINT fk_sucursal FOREIGN KEY (id_sucursal) REFERENCES sucursal(id_sucursal)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	CONSTRAINT fk_entidad_bancaria FOREIGN KEY (id_entidad_bancaria) REFERENCES entidad_bancaria(codigo)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
