@@ -58,7 +58,7 @@ CREATE TABLE sucursal(
 	ciudad varchar(50),
 	codigo_postal numeric(5),
 	provincia varchar(50),
-	cod_entidad numeric(4) NOT NULL,
+	cod_entidad varchar(4) NOT NULL,
 	
 	CONSTRAINT pk_sucursal PRIMARY KEY (id_sucursal),
 	CONSTRAINT fk_sucursal FOREIGN KEY (cod_entidad) REFERENCES entidad_bancaria(codigo)
@@ -96,7 +96,7 @@ CREATE TABLE trabajador(
 
 CREATE TABLE entrevistar(
 	id_trabajador int,
-	id_sucursal numeric(4),
+	id_sucursal varchar(4),
 	fecha date,
 	
 	CONSTRAINT pk_entrevistar PRIMARY KEY (id_trabajador,id_sucursal),
@@ -145,7 +145,7 @@ CREATE TABLE cuenta_bancaria(
 	tipo varchar(100),
 	contraseña numeric(6) CHECK (LENGTH(CAST(contraseña AS VARCHAR)) = 6),
 	id_cliente int NOT NULL,
-	id_sucursal numeric(4) NOT NULL,
+	id_sucursal varchar(4) NOT NULL,
 
 	CONSTRAINT pk_cuenta_bancaria PRIMARY KEY (id_cuenta),
 	CONSTRAINT fk_cliente FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
@@ -223,7 +223,7 @@ CREATE TABLE crear_tarjeta(
 
 CREATE TABLE crear_cuenta(
 	id_cliente int,
-	id_sucursal numeric(4),
+	id_sucursal varchar(4),
 	id_cc int,
 	fecha_creacion date,
 
@@ -245,7 +245,7 @@ CREATE TABLE cajero(
 	modelo varchar(100),
 	localización varchar(200),
 	deposito decimal(30,2),
-	id_sucursal numeric(4) NOT NULL,
+	id_sucursal varchar(4) NOT NULL,
 	
 	CONSTRAINT pk_cajero PRIMARY KEY (id_cajero),
 	CONSTRAINT fk_id_sucursal FOREIGN KEY (id_sucursal) REFERENCES sucursal(id_sucursal)
@@ -296,7 +296,7 @@ CREATE TABLE contable(
 CREATE TABLE gestor(
 	id_trabajador int,
 	especialidad varchar(100),
-	id_oficina int NOT NULL,
+	id_oficina varchar NOT NULL,
 	
 	CONSTRAINT pk_gestor PRIMARY KEY (id_trabajador),
 	CONSTRAINT fk_id_trabajador FOREIGN KEY (id_trabajador) REFERENCES trabajador(id_trabajador)
@@ -310,7 +310,7 @@ CREATE TABLE gestor(
 CREATE TABLE contrato(
 	id_contrato SERIAL,
 	id_trabajador int,
-	id_sucursal numeric(4),
+	id_sucursal varchar(4),
 	fecha_contratación date,
 	
 	CONSTRAINT pk_contrato PRIMARY KEY (id_contrato),
