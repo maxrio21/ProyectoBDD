@@ -71,9 +71,14 @@ CREATE TABLE oficina(
 	seccion varchar(50),
 	m2 decimal(3,2),
 	id_sucursal varchar(4) NOT NULL,
+	id_entidad_bancaria varchar(4) NOT NULL,
+
 
 	CONSTRAINT pk_oficina PRIMARY KEY (id_oficina),
 	CONSTRAINT fk_id_sucursal FOREIGN KEY (id_sucursal) REFERENCES sucursal(id_sucursal)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	CONSTRAINT fk_entidad_bancaria FOREIGN KEY (id_entidad_bancaria) REFERENCES entidad_bancaria(codigo)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
