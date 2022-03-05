@@ -140,7 +140,7 @@ CREATE TABLE debito(
 
 CREATE TABLE cuenta_bancaria(
 	id_cuenta SERIAL,
-	iban numeric(24),
+	iban varchar(24),
 	deposito decimal(15,2),
 	tipo varchar(100),
 	contraseña numeric(6) CHECK (LENGTH(CAST(contraseña AS VARCHAR)) = 6),
