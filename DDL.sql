@@ -9,7 +9,6 @@ cajero,oficina,director,supervisar,
 administrativo,contable,gestor,entrevistar,contrato;
 
 
-
 CREATE TABLE cliente(
 	id_cliente SERIAL,
 	dni varchar(9) CHECK (LENGTH(dni) = 9),
@@ -46,22 +45,6 @@ CREATE TABLE alquilar(
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE trabajador(
-	id_trabajador SERIAL,
-	dni varchar(9) CHECK (LENGTH(dni) = 9),
-	nombre varchar(50),
-	apellidos varchar(100),
-	telefono varchar(15) CHECK (LENGTH(telefono) >= 9),
-	domicilio varchar(200),
-	correo varchar(320),
-	id_oficina numeric(4),
-	
-	CONSTRAINT pk_trabajador PRIMARY KEY (id_trabajador),
-	CONSTRAINT fk_id_oficina FOREIGN KEY (id_oficina) REFERENCES oficina(id)
-	ON DELETE NO ACTION 
-	ON UPDATE CASCADE
-);
-
 CREATE TABLE entidad_bancaria(
 	codigo numeric(4),
 	nombre varchar(50),
@@ -80,6 +63,34 @@ CREATE TABLE sucursal(
 	CONSTRAINT pk_sucursal PRIMARY KEY (id_sucursal),
 	CONSTRAINT fk_sucursal FOREIGN KEY (cod_entidad) REFERENCES entidad_bancaria(codigo)
 	ON DELETE NO ACTION
+	ON UPDATE CASCADE
+);
+
+CREATE TABLE oficina(
+	id_oficina numeric(4),
+	seccion varchar(50),
+	m2 decimal(3,2),
+	id_sucursal numeric(4) NOT NULL,
+
+	CONSTRAINT pk_oficina PRIMARY KEY (id_oficina),
+	CONSTRAINT fk_id_sucursal FOREIGN KEY (id_sucursal) REFERENCES sucursal(id_sucursal)
+	ON DELETE NO ACTION
+	ON UPDATE CASCADE
+);
+
+CREATE TABLE trabajador(
+	id_trabajador SERIAL,
+	dni varchar(9) CHECK (LENGTH(dni) = 9),
+	nombre varchar(50),
+	apellidos varchar(100),
+	telefono varchar(15) CHECK (LENGTH(telefono) >= 9),
+	domicilio varchar(200),
+	correo varchar(320),
+	id_oficina numeric(4),
+	
+	CONSTRAINT pk_trabajador PRIMARY KEY (id_trabajador),
+	CONSTRAINT fk_id_oficina FOREIGN KEY (id_oficina) REFERENCES oficina(id_oficina)
+	ON DELETE NO ACTION 
 	ON UPDATE CASCADE
 );
 
@@ -237,18 +248,6 @@ CREATE TABLE cajero(
 	id_sucursal numeric(4) NOT NULL,
 	
 	CONSTRAINT pk_cajero PRIMARY KEY (id_cajero),
-	CONSTRAINT fk_id_sucursal FOREIGN KEY (id_sucursal) REFERENCES sucursal(id_sucursal)
-	ON DELETE NO ACTION
-	ON UPDATE CASCADE
-);
-
-CREATE TABLE oficina(
-	id_oficina numeric(4),
-	seccion varchar(50),
-	m2 decimal(3,2),
-	id_sucursal numeric(4) NOT NULL,
-
-	CONSTRAINT pk_oficina PRIMARY KEY (id_oficina),
 	CONSTRAINT fk_id_sucursal FOREIGN KEY (id_sucursal) REFERENCES sucursal(id_sucursal)
 	ON DELETE NO ACTION
 	ON UPDATE CASCADE
