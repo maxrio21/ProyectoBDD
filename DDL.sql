@@ -46,14 +46,14 @@ CREATE TABLE alquilar(
 );
 
 CREATE TABLE entidad_bancaria(
-	codigo numeric(4),
+	codigo varchar(4),
 	nombre varchar(50),
 	
 	CONSTRAINT pk_entidad_bancaria PRIMARY KEY (codigo)
 );
 
 CREATE TABLE sucursal(
-	id_sucursal numeric(4),
+	id_sucursal varchar(4),
 	dirección varchar(200),
 	ciudad varchar(50),
 	codigo_postal numeric(5),
@@ -67,10 +67,10 @@ CREATE TABLE sucursal(
 );
 
 CREATE TABLE oficina(
-	id_oficina numeric(4),
+	id_oficina varchar(4),
 	seccion varchar(50),
 	m2 decimal(3,2),
-	id_sucursal numeric(4) NOT NULL,
+	id_sucursal varchar(4) NOT NULL,
 
 	CONSTRAINT pk_oficina PRIMARY KEY (id_oficina),
 	CONSTRAINT fk_id_sucursal FOREIGN KEY (id_sucursal) REFERENCES sucursal(id_sucursal)
@@ -86,7 +86,7 @@ CREATE TABLE trabajador(
 	telefono varchar(15) CHECK (LENGTH(telefono) >= 9),
 	domicilio varchar(200),
 	correo varchar(320),
-	id_oficina numeric(4),
+	id_oficina varchar(4),
 	
 	CONSTRAINT pk_trabajador PRIMARY KEY (id_trabajador),
 	CONSTRAINT fk_id_oficina FOREIGN KEY (id_oficina) REFERENCES oficina(id_oficina)
