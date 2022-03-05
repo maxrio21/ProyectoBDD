@@ -54,8 +54,12 @@ CREATE TABLE trabajador(
 	telefono varchar(15) CHECK (LENGTH(telefono) >= 9),
 	domicilio varchar(200),
 	correo varchar(320),
+	id_oficina numeric(4),
 	
-	CONSTRAINT pk_trabajador PRIMARY KEY (id_trabajador)
+	CONSTRAINT pk_trabajador PRIMARY KEY (id_trabajador),
+	CONSTRAINT fk_id_oficina FOREIGN KEY (id_oficina) REFERENCES oficina(id)
+	ON DELETE NO ACTION 
+	ON UPDATE CASCADE
 );
 
 CREATE TABLE entidad_bancaria(
@@ -239,7 +243,7 @@ CREATE TABLE cajero(
 );
 
 CREATE TABLE oficina(
-	id_oficina SERIAL,
+	id_oficina numeric(4),
 	seccion varchar(50),
 	m2 decimal(3,2),
 	id_sucursal numeric(4) NOT NULL,
