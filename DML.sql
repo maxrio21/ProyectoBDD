@@ -2,6 +2,7 @@ DELETE FROM cliente;
 DELETE FROM caja_fuerte;
 DELETE FROM alquilar;
 DELETE FROM entidad_bancaria;
+DELETE FROM sucursal;
 --Reinicia a 1 los autoincrementables en caso de borrado
 ALTER SEQUENCE cliente_id_cliente_seq RESTART WITH 1;
 ALTER SEQUENCE caja_fuerte_id_caja_seq RESTART WITH 1;
