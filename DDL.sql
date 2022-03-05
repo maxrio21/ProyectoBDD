@@ -56,7 +56,7 @@ CREATE TABLE sucursal(
 	id_sucursal varchar(4),
 	dirección varchar(200),
 	ciudad varchar(50),
-	codigo_postal numeric(5),
+	codigo_postal varchar(5),
 	provincia varchar(50),
 	cod_entidad varchar(4) NOT NULL,
 	
