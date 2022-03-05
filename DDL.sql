@@ -67,7 +67,7 @@ CREATE TABLE sucursal(
 );
 
 CREATE TABLE oficina(
-	id_oficina varchar(4),
+	id_oficina varchar(12),
 	seccion varchar(50),
 	m2 numeric,
 	id_sucursal varchar(4) NOT NULL,
