@@ -1,11 +1,14 @@
+--Borra las tablas en caso de que sigan habiendo datos.
 DELETE FROM cliente;
 DELETE FROM caja_fuerte;
 DELETE FROM alquilar;
 DELETE FROM entidad_bancaria;
 DELETE FROM sucursal;
+
 --Reinicia a 1 los autoincrementables en caso de borrado
 ALTER SEQUENCE cliente_id_cliente_seq RESTART WITH 1;
 ALTER SEQUENCE caja_fuerte_id_caja_seq RESTART WITH 1;
+ALTER SEQUENCE cuenta_bancaria_id_cuenta_seq RESTART WITH 1;
 --SELECT * FROM information_schema.sequences;
 
 INSERT INTO cliente(dni,nombre,apellidos,telefono,domicilio,correo)
@@ -246,6 +249,10 @@ VALUES
 ('3045','PASSATGE DEL LLAURADOR, 1','ALTEA','03590','ALICANTE','3045'),
 ('9000','ALCALA, 50','MADRID','28014','MADRID','9000'),
 ('3190','BERNA, 1','TOLEDO','45003','TOLEDO','3190');
+
+INSERT INTO cuenta_bancaria(/*id_cliente,*/iban,deposito,tipo,constraseña,contraseña,id_cliente,id_sucursal)
+VALUES
+('','','','','','',''),
 
 SELECT *
 FROM SUCURSAL
