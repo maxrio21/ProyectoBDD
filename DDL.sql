@@ -41,7 +41,7 @@ CREATE TABLE alquilar(
 	ON DELETE NO ACTION
 	ON UPDATE CASCADE,
 	CONSTRAINT fk_id_cliente FOREIGN KEY(id_cliente) REFERENCES cliente(id_cliente)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -62,7 +62,7 @@ CREATE TABLE sucursal(
 	
 	CONSTRAINT pk_sucursal PRIMARY KEY (id_sucursal),
 	CONSTRAINT fk_sucursal FOREIGN KEY (cod_entidad) REFERENCES entidad_bancaria(codigo)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -74,7 +74,7 @@ CREATE TABLE oficina(
 
 	CONSTRAINT pk_oficina PRIMARY KEY (id_oficina),
 	CONSTRAINT fk_id_sucursal FOREIGN KEY (id_sucursal) REFERENCES sucursal(id_sucursal)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -90,7 +90,7 @@ CREATE TABLE trabajador(
 	
 	CONSTRAINT pk_trabajador PRIMARY KEY (id_trabajador),
 	CONSTRAINT fk_id_oficina FOREIGN KEY (id_oficina) REFERENCES oficina(id_oficina)
-	ON DELETE NO ACTION 
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -104,7 +104,7 @@ CREATE TABLE entrevistar(
 	ON DELETE NO ACTION
 	ON UPDATE CASCADE,
 	CONSTRAINT fk_sucursal FOREIGN KEY (id_sucursal) REFERENCES sucursal(id_sucursal)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -116,7 +116,7 @@ CREATE TABLE tarjeta(
 	
 	CONSTRAINT pk_tarjeta PRIMARY KEY (id_tarjeta),
 	CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -125,7 +125,7 @@ CREATE TABLE credito(
 	
 	CONSTRAINT pk_credito PRIMARY KEY (id_tarjeta),
 	CONSTRAINT fk_id_tarjeta FOREIGN KEY (id_tarjeta) REFERENCES tarjeta(id_tarjeta)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -134,7 +134,7 @@ CREATE TABLE debito(
 	
 	CONSTRAINT pk_debito PRIMARY KEY (id_tarjeta),
 	CONSTRAINT fk_id_tarjeta FOREIGN KEY (id_tarjeta) REFERENCES tarjeta(id_tarjeta)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -152,7 +152,7 @@ CREATE TABLE cuenta_bancaria(
 	ON DELETE NO ACTION
 	ON UPDATE CASCADE,
 	CONSTRAINT fk_sucursal FOREIGN KEY (id_sucursal) REFERENCES sucursal(id_sucursal)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -168,7 +168,7 @@ CREATE TABLE realizar_operacion(
 	ON DELETE NO ACTION
 	ON UPDATE CASCADE,
 	CONSTRAINT fk_cuenta FOREIGN KEY (id_cuenta) REFERENCES cuenta_bancaria(id_cuenta)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -180,7 +180,7 @@ CREATE TABLE factura(
 	
 	CONSTRAINT pk_factura PRIMARY KEY (id_factura),
 	CONSTRAINT fk_realizar_operacion FOREIGN KEY (id_cliente,id_cuenta) REFERENCES realizar_operacion(id_cliente,id_cuenta)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -189,7 +189,7 @@ CREATE TABLE cuenta_ahorro(
 	
 	CONSTRAINT pk_cuenta_ahorro PRIMARY KEY (id_cuenta),
 	CONSTRAINT fk_id_cuenta FOREIGN KEY (id_cuenta) REFERENCES cuenta_bancaria(id_cuenta)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -198,7 +198,7 @@ CREATE TABLE cuenta_corriente(
 	
 	CONSTRAINT pk_cuenta_corriente PRIMARY KEY (id_cuenta),
 	CONSTRAINT fk_id_cuenta FOREIGN KEY (id_cuenta) REFERENCES cuenta_bancaria(id_cuenta)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -211,13 +211,13 @@ CREATE TABLE crear_tarjeta(
 	CONSTRAINT pk_crear_tarjeta PRIMARY KEY(id_cc,id_cliente),
 	CONSTRAINT uk_crear_tarjeta UNIQUE (id_cc,id_tarjeta),
 	CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE,
 	CONSTRAINT fk_id_cc FOREIGN KEY (id_cc) REFERENCES cuenta_corriente(id_cuenta)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE,
 	CONSTRAINT fk_id_tarjeta FOREIGN KEY (id_tarjeta) REFERENCES tarjeta(id_tarjeta)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -230,13 +230,13 @@ CREATE TABLE crear_cuenta(
 	CONSTRAINT pk_crear_cuenta PRIMARY KEY (id_cliente,id_sucursal),
 	CONSTRAINT uk_crear_cùenta UNIQUE (id_cliente,id_cc),
 	CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE,
 	CONSTRAINT fk_id_sucursal FOREIGN KEY (id_sucursal) REFERENCES sucursal(id_sucursal)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE,
 	CONSTRAINT fk_id_cc FOREIGN KEY (id_cc) REFERENCES cuenta_corriente(id_cuenta)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -249,7 +249,7 @@ CREATE TABLE cajero(
 	
 	CONSTRAINT pk_cajero PRIMARY KEY (id_cajero),
 	CONSTRAINT fk_id_sucursal FOREIGN KEY (id_sucursal) REFERENCES sucursal(id_sucursal)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -258,7 +258,7 @@ CREATE TABLE director(
 	
 	CONSTRAINT pk_director PRIMARY KEY (id_trabajador),
 	CONSTRAINT fk_id_trabajador FOREIGN KEY (id_trabajador) REFERENCES trabajador(id_trabajador)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -268,10 +268,10 @@ CREATE TABLE supervisar(
 	
 	CONSTRAINT pk_supervisor PRIMARY KEY (supervisor1,supervisor2),
 	CONSTRAINT fk_supervisor1 FOREIGN KEY (supervisor1) REFERENCES director(id_trabajador)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE,
 	CONSTRAINT fk_supervisor2 FOREIGN KEY (supervisor2) REFERENCES director(id_trabajador)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -280,7 +280,7 @@ CREATE TABLE administrativo(
 	
 	CONSTRAINT pk_administrativo PRIMARY KEY (id_trabajador),
 	CONSTRAINT fk_id_trabajador FOREIGN KEY (id_trabajador) REFERENCES trabajador(id_trabajador)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -289,7 +289,7 @@ CREATE TABLE contable(
 	
 	CONSTRAINT pk_contable PRIMARY KEY (id_trabajador),
 	CONSTRAINT fk_id_trabajador FOREIGN KEY (id_trabajador) REFERENCES trabajador(id_trabajador)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -300,10 +300,10 @@ CREATE TABLE gestor(
 	
 	CONSTRAINT pk_gestor PRIMARY KEY (id_trabajador),
 	CONSTRAINT fk_id_trabajador FOREIGN KEY (id_trabajador) REFERENCES trabajador(id_trabajador)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE,
 	CONSTRAINT fk_id_oficina FOREIGN KEY (id_oficina) REFERENCES oficina(id_oficina)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
@@ -315,6 +315,6 @@ CREATE TABLE contrato(
 	
 	CONSTRAINT pk_contrato PRIMARY KEY (id_contrato),
 	CONSTRAINT fk_entrevistar FOREIGN KEY (id_trabajador,id_sucursal) REFERENCES entrevistar(id_trabajador,id_sucursal)
-	ON DELETE NO ACTION
+	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
