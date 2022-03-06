@@ -278,7 +278,7 @@ CREATE TABLE cajero(--
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE director(
+CREATE TABLE director(--
 	id_trabajador int,
 	
 	CONSTRAINT pk_director PRIMARY KEY (id_trabajador),
@@ -287,7 +287,7 @@ CREATE TABLE director(
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE supervisar(
+CREATE TABLE supervisar(--
 	supervisor1 int,
 	supervisor2 int CHECK (supervisor2 != supervisor1),
 	
@@ -300,7 +300,7 @@ CREATE TABLE supervisar(
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE administrativo(
+CREATE TABLE administrativo(--
 	id_trabajador int,
 	
 	CONSTRAINT pk_administrativo PRIMARY KEY (id_trabajador),
@@ -309,7 +309,7 @@ CREATE TABLE administrativo(
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE contable(
+CREATE TABLE contable(--
 	id_trabajador int,
 	
 	CONSTRAINT pk_contable PRIMARY KEY (id_trabajador),
@@ -318,7 +318,7 @@ CREATE TABLE contable(
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE gestor(
+CREATE TABLE gestor(--
 	id_trabajador int,
 	especialidad varchar(100),
 	
@@ -328,7 +328,7 @@ CREATE TABLE gestor(
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE guardia(
+CREATE TABLE guardia(--
 	id_trabajador int,
 	anyos_antiguedad numeric(2),
 	armado varchar(3),
@@ -339,7 +339,7 @@ CREATE TABLE guardia(
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE prestamista(
+CREATE TABLE prestamista(--
 	id_trabajador int,
 	
 	CONSTRAINT pk_prestamista PRIMARY KEY (id_trabajador),
