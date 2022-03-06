@@ -169,13 +169,14 @@ CREATE TABLE cuenta_bancaria(--
 );
 
 CREATE TABLE realizar_operacion(
+	id_operacion SERIAL,
 	id_cliente int NOT NULL,
 	id_cuenta int NOT NULL,
 	cantidad decimal(15,2) DEFAULT 0,
 	fecha date NOT NULL,
 	tipo varchar(50),
 	
-	CONSTRAINT pk_realizar_operacion PRIMARY KEY (id_cliente,id_cuenta),
+	CONSTRAINT pk_realizar_operacion PRIMARY KEY (id_cliente,id_cuenta,fecha),
 	CONSTRAINT fk_cliente FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE,
@@ -191,7 +192,7 @@ CREATE TABLE factura(
 	id_cuenta int,
 	
 	CONSTRAINT pk_factura PRIMARY KEY (id_factura),
-	CONSTRAINT fk_realizar_operacion FOREIGN KEY (id_cliente,id_cuenta) REFERENCES realizar_operacion(id_cliente,id_cuenta)
+	CONSTRAINT fk_realizar_operacion FOREIGN KEY (id_cliente,id_cuenta,fecha) REFERENCES realizar_operacion(id_cliente,id_cuenta,fecha)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
