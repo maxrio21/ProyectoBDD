@@ -369,10 +369,23 @@ VALUES
 ('12018971E','Eric','D. Stepp','695701198','Paseo Junquera, 84 12527 Artana','25/02/1991','EricDStepp@gustr.com','00500149DP06'),
 ('45965418X','Rebeca','K. Wenz','751755631','Alcon Molina, 36 31110 Valle de Elorz Noáin','01/01/1992','RebeccaKWenz@gustr.com','30453045DP07'),
 ('54377478G','Kendra','R. Crutcher','725552211','Eusebio Dávila, 40 41550 Aguadulce','10/05/1972','KendraRCrutcher@superrito.com','01820182DP01'),
-('00403835R','Tania','C. Grout','607347696','Paseo del Atlántico, 7117520 Puigcerdà','07/01/2001','ThanhCGrout@gustr.com','31903190DP07'),
+('00403835R','Tania','C. Grout','607347696','Paseo del Atlántico, 7117520 Puigcerdà','07/01/1995','ThanhCGrout@gustr.com','31903190DP07'),
 ('97827401Y','Audrey','J. Douglas','730864430','C/ Los Herrán, 71 06260 Monesterio','19/08/1970','AudreyJDouglas@superrito.com','00500149DP02');
 
+INSERT INTO entrevistar(id_trabajador,id_sucursal,id_entidad_bancaria,fecha)
+VALUES
+(1,'2100','3029','13/09/2021'),
+(2,'2100','3029','28-05-2020'),
+(3,'0001','0081','10-12-2020'),
+(4,'0002','0128','09-12-2022'),
+(5,'3059','3059','10-02-2021'),
+(6,'0050','0149','14-09-2020'),
+(7,'3045','3045','12-10-2018'),
+(8,'0182','0182','12-08-2018'),
+(9,'3190','3190','27-07-2019'),
+(10,'0050','0149','24-11-2021');
 
-SELECT DISTINCT *
-FROM TRABAJADOR
-ORDER BY id_trabajador
+
+
+SELECT * 
+FROM entrevistar;
