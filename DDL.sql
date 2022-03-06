@@ -82,7 +82,7 @@ CREATE TABLE oficina(--
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE trabajador(
+CREATE TABLE trabajador(--
 	id_trabajador SERIAL,
 	dni varchar(9) CHECK (LENGTH(dni) = 9),
 	nombre varchar(50),
