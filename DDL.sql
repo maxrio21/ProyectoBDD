@@ -243,31 +243,35 @@ CREATE TABLE crear_tarjeta(
 );
 
 CREATE TABLE crear_cuenta(
+	id_cuenta SERIAL,
+	iban varchar(26),
+	tipo varchar(100),
+	contraseña numeric(6) CHECK (LENGTH(CAST(contraseña AS VARCHAR)) = 6),
 	id_cliente int,
 	id_sucursal varchar(4),
-	id_cc int,
+	id_entidad_bancaria varchar(4) NOT NULL,
 	fecha_creacion date,
 
 	CONSTRAINT pk_crear_cuenta PRIMARY KEY (id_cliente,id_sucursal),
-	CONSTRAINT uk_crear_cùenta UNIQUE (id_cliente,id_cc),
+	CONSTRAINT uk_crear_cuenta UNIQUE (id_cliente,id_cuenta),
 	CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE,
 	CONSTRAINT fk_id_sucursal FOREIGN KEY (id_sucursal) REFERENCES sucursal(id_sucursal)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE,
-	CONSTRAINT fk_id_cc FOREIGN KEY (id_cc) REFERENCES cuenta_corriente(id_cuenta)
+	CONSTRAINT fk_id_cuenta FOREIGN KEY (id_cuenta) REFERENCES cuenta_bancaria(id_cuenta)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
 
 CREATE TABLE cajero(
 	id_cajero SERIAL,
-	modelo varchar(100),
 	localización varchar(200),
 	deposito decimal(30,2),
 	id_sucursal varchar(4) NOT NULL,
-	
+	id_entidad_bancaria varchar(4) NOT NULL,
+
 	CONSTRAINT pk_cajero PRIMARY KEY (id_cajero),
 	CONSTRAINT fk_id_sucursal FOREIGN KEY (id_sucursal) REFERENCES sucursal(id_sucursal)
 	ON DELETE CASCADE
