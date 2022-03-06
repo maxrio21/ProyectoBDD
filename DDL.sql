@@ -169,10 +169,10 @@ CREATE TABLE cuenta_bancaria(--
 );
 
 CREATE TABLE realizar_operacion(
-	id_cliente int,
-	id_cuenta int,
-	cantidad decimal(15,2) CHECK (cantidad > 0),
-	fecha date,
+	id_cliente int NOT NULL,
+	id_cuenta int NOT NULL,
+	cantidad decimal(15,2) DEFAULT 0,
+	fecha date NOT NULL,
 	tipo varchar(50),
 	
 	CONSTRAINT pk_realizar_operacion PRIMARY KEY (id_cliente,id_cuenta),
