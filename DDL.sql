@@ -119,6 +119,7 @@ CREATE TABLE tarjeta(
 	titular varchar(50),
 	cvv numeric(3) CHECK (LENGTH(CAST(cvv AS VARCHAR)) = 3),
 	id_cliente int,
+	tipo varchar(20),
 	
 	CONSTRAINT pk_tarjeta PRIMARY KEY (id_tarjeta),
 	CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
