@@ -1,4 +1,5 @@
 --Borra las tablas en caso de que sigan habiendo datos.
+/*
 DELETE FROM cliente;
 DELETE FROM caja_fuerte;
 DELETE FROM alquilar;
@@ -25,7 +26,7 @@ DELETE FROM contable;
 DELETE FROM gestor;
 DELETE FROM guardia;
 DELETE FROM prestamista;
-
+*/
 --Reinicia a 1 los autoincrementables en caso de borrado
 ALTER SEQUENCE cliente_id_cliente_seq RESTART WITH 1;
 ALTER SEQUENCE caja_fuerte_id_caja_seq RESTART WITH 1;
@@ -35,6 +36,7 @@ ALTER SEQUENCE tarjeta_id_tarjeta_seq RESTART WITH 1;
 ALTER SEQUENCE realizar_operacion_id_operacion_seq RESTART WITH 1;
 ALTER SEQUENCE crear_cuenta_id_cuenta_seq RESTART WITH 1;
 ALTER SEQUENCE cajero_id_cajero_seq RESTART WITH 1;
+ALTER SEQUENCE contrato_id_contrato_seq RESTART WITH 1;
 
 --SELECT * FROM information_schema.sequences;
 
@@ -581,20 +583,3 @@ negocio del franquiciador','19-08-2018'),
 (8,'0182','0182','','26-11-2021'),
 (9,'3190','3190','','28-09-2019'),
 (10,'0050','0149','','20-12-2018');
-
-SELECT CONCAT(t.nombre,' ',t.apellidos) AS Nombre_completo,t.id_oficina,o.*
-FROM oficina o, trabajador t
-WHERE t.id_oficina = o.id_oficina
-ORDER BY seccion;
-
-SELECT SUBSTRING(id_oficina,9,4), seccion
-FROM oficina
-ORDER BY id_oficina ASC
-LIMIT 8;
-
-SELECT *
-FROM cuenta_bancaria
-ORDER BY id_cuenta;
-
-SELECT *
-FROM contrato;
