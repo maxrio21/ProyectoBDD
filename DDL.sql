@@ -99,7 +99,7 @@ CREATE TABLE trabajador(--
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE entrevistar(
+CREATE TABLE entrevistar(--
 	id_trabajador int,
 	id_sucursal varchar(4) NOT NULL,
 	id_entidad_bancaria varchar(4) NOT NULL,
