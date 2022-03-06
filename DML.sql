@@ -567,6 +567,8 @@ VALUES
 (9,3,'Si.'),
 (10,5,'No.');
 
+
+
 SELECT CONCAT(t.nombre,' ',t.apellidos) AS Nombre_completo,t.id_oficina,o.*
 FROM oficina o, trabajador t
 WHERE t.id_oficina = o.id_oficina
