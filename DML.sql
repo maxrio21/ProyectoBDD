@@ -385,7 +385,14 @@ VALUES
 (9,'3190','3190','27-07-2019'),
 (10,'0050','0149','24-11-2021');
 
+INSERT INTO tarjeta(titular,cvv,vencimiento,id_cliente,tipo)
+VALUES
+('Jose Breton Cañado',182,'11/03/2025',1,'CREDITO'),
+('Sandra Maria Amado',356,'09/03/2024',3,'DEBITO'),
+('Celestina Calderon',432,'09/03/2026',5,'CREDITO'),
+('Axel Fernández',757,'07/03/2024',2,'DEBITO'),
+('Celestina Calderon',313,'07/03/2023',5,'CREDITO');
 
 
-SELECT * 
-FROM entrevistar;
+SELECT *
+FROM TARJETA
