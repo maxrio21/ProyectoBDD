@@ -353,6 +353,7 @@ CREATE TABLE contrato(
 	id_trabajador int,
 	id_sucursal varchar(4),
 	id_entidad_bancaria varchar(4),
+	clausulas varchar(300),
 	fecha_contratación date,
 	
 	CONSTRAINT pk_contrato PRIMARY KEY (id_contrato),
