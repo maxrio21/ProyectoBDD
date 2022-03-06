@@ -185,7 +185,7 @@ CREATE TABLE realizar_operacion(--
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE factura(
+CREATE TABLE factura(--
 	id_factura SERIAL,
 	fecha date,
 	id_cliente int,
