@@ -6,11 +6,13 @@ DELETE FROM entidad_bancaria;
 DELETE FROM sucursal;
 DELETE FROM cuenta_bancaria;
 DELETE FROM oficina;
+DELETE FROM trabajador;
 
 --Reinicia a 1 los autoincrementables en caso de borrado
 ALTER SEQUENCE cliente_id_cliente_seq RESTART WITH 1;
 ALTER SEQUENCE caja_fuerte_id_caja_seq RESTART WITH 1;
 ALTER SEQUENCE cuenta_bancaria_id_cuenta_seq RESTART WITH 1;
+ALTER SEQUENCE trabajador_id_trabajador_seq RESTART WITH 1;
 --SELECT * FROM information_schema.sequences;
 
 INSERT INTO cliente(dni,nombre,apellidos,telefono,domicilio,correo)
@@ -344,7 +346,7 @@ VALUES
 ('31903190DP07','SALA DE JUNTAS',10,'3190','3190'),
 ('31903190DP08','SALON DE DESCANSO',10,'3190','3190');
 
-INSERT INTO cuenta_bancaria(/*id_cuenta,*/iban,deposito,tipo,contraseña,id_cliente,id_sucursal,id_entidad_bancaria)
+INSERT INTO cuenta_bancaria(iban,deposito,tipo,contraseña,id_cliente,id_sucursal,id_entidad_bancaria)
 VALUES
 ('ES950081000110110000000001',1565.54,'CORRIENTE',857823,1,'0001','0081'),
 ('ES42154401086110000000002',534546.42,'CORRIENTE',426263,3,'0108','1544'),
@@ -357,7 +359,20 @@ VALUES
 ('ES43900090004110000000009',180907.00,'CORRIENTE',739389,5,'9000','9000'),
 ('ES5131903190680000000010',5410.00,'AHORRO',486723,4,'3190','3190');
 
+INSERT INTO trabajador(dni,nombre,apellidos,telefono,domicilio,fecha_nac,correo,id_oficina)
+VALUES
+('26304527W','Ruth','Stiefel','5076970812','4632 Trymore, 56283','14/08/1999','ErnieTWilson@superrito.com','21003029DP02'),
+('14296427H','Oscar','K. Rickard','635013406','Pza. Fuensanta, 1832360 A Veiga','06/11/1982','OscarKRickard@superrito.com','21003029DP05'),
+('99145427V','Edna','C. Mahoney','646645175','Matilla de los Caños del Río','21/08/1996','EdnaCMahoney@gustr.com','00010081DP06'),
+('54422668E','Cynthia','B. Alexander','626080665','Gejuelo del Barro','29/11/1981','CynthiaBAlexander@gustr.com','00020128DP01'),
+('52168315Z','Craig','R. Douglass','729296873','Avendaño, 52 03820 Cocentaina','25/08/1980','CraigRDouglass@gustr.com','30593059DP05'),
+('12018971E','Eric','D. Stepp','695701198','Paseo Junquera, 84 12527 Artana','25/02/1991','EricDStepp@gustr.com','00500149DP06'),
+('45965418X','Rebeca','K. Wenz','751755631','Alcon Molina, 36 31110 Valle de Elorz Noáin','01/01/1992','RebeccaKWenz@gustr.com','30453045DP07'),
+('54377478G','Kendra','R. Crutcher','725552211','Eusebio Dávila, 40 41550 Aguadulce','10/05/1972','KendraRCrutcher@superrito.com','01820182DP01'),
+('00403835R','Tania','C. Grout','607347696','Paseo del Atlántico, 7117520 Puigcerdà','07/01/2001','ThanhCGrout@gustr.com','31903190DP07'),
+('97827401Y','Audrey','J. Douglas','730864430','C/ Los Herrán, 71 06260 Monesterio','19/08/1970','AudreyJDouglas@superrito.com','00500149DP02');
 
-SELECT *
-FROM OFICINA
-WHERE seccion LIKE '%PRESTAMOS%'
+
+SELECT DISTINCT *
+FROM TRABAJADOR
+ORDER BY id_trabajador
