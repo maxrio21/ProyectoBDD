@@ -118,6 +118,7 @@ CREATE TABLE tarjeta(
 	id_tarjeta SERIAL,
 	titular varchar(50),
 	cvv numeric(3) CHECK (LENGTH(CAST(cvv AS VARCHAR)) = 3),
+	vencimiento date CHECK (TO_CHAR(vencimiento,'YYYY')::numeric != TO_CHAR(NOW(), 'YYYY')::numeric),
 	id_cliente int,
 	tipo varchar(20),
 	
