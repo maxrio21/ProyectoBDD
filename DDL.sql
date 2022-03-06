@@ -168,7 +168,7 @@ CREATE TABLE cuenta_bancaria(--
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE realizar_operacion(
+CREATE TABLE realizar_operacion(--
 	id_operacion SERIAL,
 	id_cliente int NOT NULL,
 	id_cuenta int NOT NULL,
