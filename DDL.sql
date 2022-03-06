@@ -328,6 +328,26 @@ CREATE TABLE gestor(
 	ON UPDATE CASCADE
 );
 
+CREATE TABLE guardia(
+	id_trabajador int,
+	anyos_antiguedad numeric(2),
+	armado varchar(3),
+	
+	CONSTRAINT pk_guardia PRIMARY KEY (id_trabajador),
+	CONSTRAINT fk_id_trabajador FOREIGN KEY (id_trabajador) REFERENCES trabajador(id_trabajador)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
+);
+
+CREATE TABLE prestamista(
+	id_trabajador int,
+	
+	CONSTRAINT pk_prestamista PRIMARY KEY (id_trabajador),
+	CONSTRAINT fk_id_trabajador FOREIGN KEY (id_trabajador) REFERENCES trabajador(id_trabajador)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
+);
+
 CREATE TABLE contrato(
 	id_contrato SERIAL,
 	id_trabajador int,
