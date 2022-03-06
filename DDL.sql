@@ -186,7 +186,7 @@ CREATE TABLE realizar_operacion(--
 );
 
 CREATE TABLE factura(
-	id_factura numeric(10),
+	id_factura SERIAL,
 	fecha date,
 	id_cliente int,
 	id_cuenta int,
