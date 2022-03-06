@@ -13,6 +13,8 @@ ALTER SEQUENCE cliente_id_cliente_seq RESTART WITH 1;
 ALTER SEQUENCE caja_fuerte_id_caja_seq RESTART WITH 1;
 ALTER SEQUENCE cuenta_bancaria_id_cuenta_seq RESTART WITH 1;
 ALTER SEQUENCE trabajador_id_trabajador_seq RESTART WITH 1;
+ALTER SEQUENCE tarjeta_id_tarjeta_seq RESTART WITH 1;
+
 --SELECT * FROM information_schema.sequences;
 
 INSERT INTO cliente(dni,nombre,apellidos,telefono,domicilio,correo)
@@ -392,6 +394,34 @@ VALUES
 ('Celestina Calderon',432,'09/03/2026',5,'CREDITO'),
 ('Axel Fernández',757,'07/03/2024',2,'DEBITO'),
 ('Celestina Calderon',313,'07/03/2023',5,'CREDITO');
+
+/*
+Hago un pequeño inciso de la cantidad de datos de las 
+tablas credito y debito, la cantidad es menor a 5
+por que las cuentas de banco creadas son 10, de estas 10
+solo 5 son cuentas corrientes y de estas tarjetas se dividen
+3 en credito y 2 en debito. 
+
+Si hubieran más cuentas correintes
+el numero aumentaria, pero dado la carga de trabajo que supone
+el proyecto disiminuire un poco el numero a cambio de aumentarlo
+en zonas posteriores y superiores del proyecto.
+
+De todas formas el sistema esta preparado para añadir más cuentas
+de banco para que en un futuro sea escalable.
+*/
+
+INSERT INTO credito(id_tarjeta)
+VALUES
+(1),
+(3),
+(5);
+
+INSERT INTO debito(id_tarjeta)
+VALUES
+(2),
+(4);
+
 
 
 SELECT *
