@@ -89,6 +89,7 @@ CREATE TABLE trabajador(
 	apellidos varchar(100),
 	telefono varchar(15) CHECK (LENGTH(telefono) >= 9),
 	domicilio varchar(200),
+	fecha_nac date CHECK ((TO_CHAR(NOW(), 'YYYY')::numeric - TO_CHAR(fecha_nac, 'YYYY')::numeric) >= 21),
 	correo varchar(320),
 	id_oficina varchar(12) NOT NULL,
 	
