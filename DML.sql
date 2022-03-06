@@ -14,6 +14,7 @@ ALTER SEQUENCE caja_fuerte_id_caja_seq RESTART WITH 1;
 ALTER SEQUENCE cuenta_bancaria_id_cuenta_seq RESTART WITH 1;
 ALTER SEQUENCE trabajador_id_trabajador_seq RESTART WITH 1;
 ALTER SEQUENCE tarjeta_id_tarjeta_seq RESTART WITH 1;
+ALTER SEQUENCE realizar_operacion_id_operacion_seq RESTART WITH 1;
 
 --SELECT * FROM information_schema.sequences;
 
@@ -424,27 +425,25 @@ VALUES
 
 INSERT INTO realizar_operacion(id_cliente,id_cuenta,cantidad,fecha,tipo)
 VALUES
-(1,1,685.67,'',''),
-(1,1,-25.34,'',''),
-(1,7,750.34,'',''),
-(1,7,-264.28,'',''),
-(2,8,581.35,'',''),
-(2,8,-2054.54,'',''),
-(2,4,1000.50,'',''),
-(2,4,-1500.54,'',''),
-(3,6,899.54,'',''),
-(3,6,-100.00,'',''),
-(3,2,50.45,'',''),
-(3,2,-435.64,'',''),
-(3,3,300.65,'',''),
-(3,3,-4000.54,'',''),
-(4,10,750.98,'',''),
-(4,10,-617.23,'',''),
-(5,5,485.74,'',''),
-(5,5,-893.62,'',''),
-(6,9,937.23,'',''),
-(6,9,-889.85,'','');
+(1,1,685.67,'12-06-2020','INGRESO'),
+(1,1,-25.34,'13-11-2021','RETIRADA'),
+(1,7,750.34,'06-06-2021','INGRESO'),
+(1,7,-264.28,'12-08-2021','RETIRADA'),
+(2,8,581.35,'22-10-2021','INGRESO'),
+(2,8,-2054.54,'31-07-2020','RETIRADA'),
+(2,4,1000.50,'09-02-2021','INGRESO'),
+(2,4,-1500.54,'05-01-2022','RETIRADA'),
+(3,6,899.54,'21-12-2020','INGRESO'),
+(3,6,-100.00,'12-05-2020','RETIRADA'),
+(3,2,50.45,'18-09-2020','INGRESO'),
+(3,2,-435.64,'01-04-2022','RETIRADA'),
+(3,3,300.65,'31-05-2021','INGRESO'),
+(3,3,-4000.54,'05-10-2021','RETIRADA'),
+(4,10,750.98,'01-05-2021','INGRESO'),
+(4,10,-617.23,'25-06-2020','RETIRADA'),
+(5,5,485.74,'17-11-2021','INGRESO'),
+(5,5,-893.62,'31-01-2021','RETIRADA');
 
 SELECT *
-FROM CUENTA_BANCARIA
+FROM realizar_operacion
 ORDER BY id_cliente
