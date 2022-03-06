@@ -15,6 +15,7 @@ DELETE FROM realizar_operacion;
 DELETE FROM factura;
 DELETE FROM cuenta_ahorro;
 DELETE FROM cuenta_corriente;
+DELETE FROM crear_tarjeta;
 
 --Reinicia a 1 los autoincrementables en caso de borrado
 ALTER SEQUENCE cliente_id_cliente_seq RESTART WITH 1;
@@ -396,13 +397,13 @@ VALUES
 (9,'3190','3190','27-07-2019'),
 (10,'0050','0149','24-11-2021');
 
-INSERT INTO tarjeta(titular,cvv,vencimiento,id_cliente,tipo)
+INSERT INTO tarjeta(titular,cvv,vencimiento,id_cliente,id_cuenta,contraseña,tipo)
 VALUES
-('Jose Breton Cañado',182,'11/03/2025',1,'CREDITO'),
-('Sandra Maria Amado',356,'09/03/2024',3,'DEBITO'),
-('Celestina Calderon',432,'09/03/2026',5,'CREDITO'),
-('Axel Fernández',757,'07/03/2024',2,'DEBITO'),
-('Celestina Calderon',313,'07/03/2023',5,'CREDITO');
+('Jose Breton Cañado',182,'11/03/2025',1,1,5079,'CREDITO'),
+('Sandra Maria Amado',356,'09/03/2024',3,2,8593,'DEBITO'),
+('Celestina Calderon',432,'09/03/2026',5,5,7437,'CREDITO'),
+('Axel Fernández',757,'07/03/2024',2,8,8718,'DEBITO'),
+('Celestina Calderon',313,'07/03/2023',5,9,0744,'CREDITO');
 
 /*
 Hago un pequeño inciso de la cantidad de datos de las 
@@ -489,7 +490,21 @@ VALUES
 (8),
 (9);
 
+INSERT INTO crear_tarjeta(id_cliente,id_cc,id_sucursal,id_entidad_bancaria,contraseña,id_tarjeta,fecha_creacion)
+VALUES
+(1,1,'0001','0081',5079,1,'2020-03-11'),
+(2,8,'3045','3045',8593,2,'2019-03-09'),
+(3,2,'0108','1544',7437,3,'2021-03-07'),
+(5,5,'0050','0149',8718,4,'2019-03-07'),
+(5,9,'9000','9000',0744,5,'07-03-2018');
+
+SELECT *
+FROM crear_tarjeta;
+
 SELECT *
 FROM cuenta_bancaria
-ORDER BY tipo
+WHERE tipo LIKE '%CORRIENTE%'
+ORDER BY id_cliente;
 
+SELECT *
+FROM tarjeta;
