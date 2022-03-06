@@ -114,38 +114,6 @@ CREATE TABLE entrevistar(--
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE tarjeta(--
-	id_tarjeta SERIAL,
-	titular varchar(50),
-	cvv numeric(3) CHECK (LENGTH(CAST(cvv AS VARCHAR)) = 3),
-	vencimiento date CHECK (TO_CHAR(vencimiento,'YYYY')::numeric != TO_CHAR(NOW(), 'YYYY')::numeric),
-	id_cliente int,
-	tipo varchar(20),
-	
-	CONSTRAINT pk_tarjeta PRIMARY KEY (id_tarjeta),
-	CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
-	ON DELETE CASCADE
-	ON UPDATE CASCADE
-);
-
-CREATE TABLE credito(--
-	id_tarjeta int,
-	
-	CONSTRAINT pk_credito PRIMARY KEY (id_tarjeta),
-	CONSTRAINT fk_id_tarjeta FOREIGN KEY (id_tarjeta) REFERENCES tarjeta(id_tarjeta)
-	ON DELETE CASCADE
-	ON UPDATE CASCADE
-);
-
-CREATE TABLE debito(--
-	id_tarjeta int,
-	
-	CONSTRAINT pk_debito PRIMARY KEY (id_tarjeta),
-	CONSTRAINT fk_id_tarjeta FOREIGN KEY (id_tarjeta) REFERENCES tarjeta(id_tarjeta)
-	ON DELETE CASCADE
-	ON UPDATE CASCADE
-);
-
 CREATE TABLE cuenta_bancaria(--
 	id_cuenta SERIAL,
 	iban varchar(26),
@@ -164,6 +132,43 @@ CREATE TABLE cuenta_bancaria(--
 	ON DELETE CASCADE
 	ON UPDATE CASCADE,
 	CONSTRAINT fk_entidad_bancaria FOREIGN KEY (id_entidad_bancaria) REFERENCES entidad_bancaria(codigo)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
+);
+
+CREATE TABLE tarjeta(--
+	id_tarjeta SERIAL,
+	titular varchar(50),
+	cvv numeric(3) CHECK (LENGTH(CAST(cvv AS VARCHAR)) = 3),
+	vencimiento date CHECK (TO_CHAR(vencimiento,'YYYY')::numeric != TO_CHAR(NOW(), 'YYYY')::numeric),
+	id_cliente int,
+	id_cuenta int NOT NULL,
+	contraseña numeric(4),
+	tipo varchar(20),
+	
+	CONSTRAINT pk_tarjeta PRIMARY KEY (id_tarjeta),
+	CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	CONSTRAINT fk_id_cuenta FOREIGN KEY (id_cuenta) REFERENCES cuenta_bancaria(id_cuenta)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
+);
+
+CREATE TABLE credito(--
+	id_tarjeta int,
+	
+	CONSTRAINT pk_credito PRIMARY KEY (id_tarjeta),
+	CONSTRAINT fk_id_tarjeta FOREIGN KEY (id_tarjeta) REFERENCES tarjeta(id_tarjeta)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
+);
+
+CREATE TABLE debito(--
+	id_tarjeta int,
+	
+	CONSTRAINT pk_debito PRIMARY KEY (id_tarjeta),
+	CONSTRAINT fk_id_tarjeta FOREIGN KEY (id_tarjeta) REFERENCES tarjeta(id_tarjeta)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE
 );
@@ -197,7 +202,7 @@ CREATE TABLE factura(--
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE cuenta_ahorro(
+CREATE TABLE cuenta_ahorro(--
 	id_cuenta int,
 	
 	CONSTRAINT pk_cuenta_ahorro PRIMARY KEY (id_cuenta),
@@ -206,7 +211,7 @@ CREATE TABLE cuenta_ahorro(
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE cuenta_corriente(
+CREATE TABLE cuenta_corriente(--
 	id_cuenta int,
 	
 	CONSTRAINT pk_cuenta_corriente PRIMARY KEY (id_cuenta),
@@ -218,6 +223,9 @@ CREATE TABLE cuenta_corriente(
 CREATE TABLE crear_tarjeta(
 	id_cliente int,
 	id_cc int,
+	id_sucursal varchar(4),
+	id_entidad_bancaria varchar(4),
+	contraseña numeric(4),
 	id_tarjeta int,
 	fecha_creacion date,
 	
