@@ -7,6 +7,12 @@ DELETE FROM sucursal;
 DELETE FROM cuenta_bancaria;
 DELETE FROM oficina;
 DELETE FROM trabajador;
+DELETE FROM entrevistar;
+DELETE FROM tarjeta;
+DELETE FROM credito;
+DELETE FROM debito;
+DELETE FROM realizar_operacion;
+DELETE FROM factura;
 
 --Reinicia a 1 los autoincrementables en caso de borrado
 ALTER SEQUENCE cliente_id_cliente_seq RESTART WITH 1;
@@ -444,6 +450,26 @@ VALUES
 (5,5,485.74,'17-11-2021','INGRESO'),
 (5,5,-893.62,'31-01-2021','RETIRADA');
 
+INSERT INTO factura(fecha,id_cliente,id_cuenta)
+VALUES
+('12-06-2020',1,1),
+('13-11-2021',1,1),
+('06-06-2021',1,7),
+('12-08-2021',1,7),
+('22-10-2021',2,8),
+('31-07-2020',2,8),
+('09-02-2021',2,4),
+('05-01-2022',2,4),
+('21-12-2020',3,6),
+('12-05-2020',3,6),
+('18-09-2020',3,2),
+('01-04-2022',3,2),
+('31-05-2021',3,3),
+('05-10-2021',3,3),
+('01-05-2021',4,10),
+('25-06-2020',4,10),
+('17-11-2021',5,5),
+('31-01-2021',5,5);
+
 SELECT *
-FROM realizar_operacion
-ORDER BY id_cliente
+FROM factura;
