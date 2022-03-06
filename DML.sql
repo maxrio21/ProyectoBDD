@@ -16,6 +16,15 @@ DELETE FROM factura;
 DELETE FROM cuenta_ahorro;
 DELETE FROM cuenta_corriente;
 DELETE FROM crear_tarjeta;
+DELETE FROM crear_cuenta;
+DELETE FROM cajero;
+DELETE FROM director;
+DELETE FROM supervisar;
+DELETE FROM administrativo;
+DELETE FROM contable;
+DELETE FROM gestor;
+DELETE FROM guardia;
+DELETE FROM prestamista;
 
 --Reinicia a 1 los autoincrementables en caso de borrado
 ALTER SEQUENCE cliente_id_cliente_seq RESTART WITH 1;
@@ -24,6 +33,8 @@ ALTER SEQUENCE cuenta_bancaria_id_cuenta_seq RESTART WITH 1;
 ALTER SEQUENCE trabajador_id_trabajador_seq RESTART WITH 1;
 ALTER SEQUENCE tarjeta_id_tarjeta_seq RESTART WITH 1;
 ALTER SEQUENCE realizar_operacion_id_operacion_seq RESTART WITH 1;
+ALTER SEQUENCE crear_cuenta_id_cuenta_seq RESTART WITH 1;
+ALTER SEQUENCE cajero_id_cajero_seq RESTART WITH 1;
 
 --SELECT * FROM information_schema.sequences;
 
@@ -373,16 +384,16 @@ VALUES
 
 INSERT INTO trabajador(dni,nombre,apellidos,telefono,domicilio,fecha_nac,correo,id_oficina)
 VALUES
-('26304527W','Ruth','Stiefel','5076970812','4632 Trymore, 56283','14/08/1999','ErnieTWilson@superrito.com','21003029DP02'),
-('14296427H','Oscar','K. Rickard','635013406','Pza. Fuensanta, 1832360 A Veiga','06/11/1982','OscarKRickard@superrito.com','21003029DP05'),
-('99145427V','Edna','C. Mahoney','646645175','Matilla de los Caños del Río','21/08/1996','EdnaCMahoney@gustr.com','00010081DP06'),
-('54422668E','Cynthia','B. Alexander','626080665','Gejuelo del Barro','29/11/1981','CynthiaBAlexander@gustr.com','00020128DP01'),
-('52168315Z','Craig','R. Douglass','729296873','Avendaño, 52 03820 Cocentaina','25/08/1980','CraigRDouglass@gustr.com','30593059DP05'),
-('12018971E','Eric','D. Stepp','695701198','Paseo Junquera, 84 12527 Artana','25/02/1991','EricDStepp@gustr.com','00500149DP06'),
-('45965418X','Rebeca','K. Wenz','751755631','Alcon Molina, 36 31110 Valle de Elorz Noáin','01/01/1992','RebeccaKWenz@gustr.com','30453045DP07'),
-('54377478G','Kendra','R. Crutcher','725552211','Eusebio Dávila, 40 41550 Aguadulce','10/05/1972','KendraRCrutcher@superrito.com','01820182DP01'),
-('00403835R','Tania','C. Grout','607347696','Paseo del Atlántico, 7117520 Puigcerdà','07/01/1995','ThanhCGrout@gustr.com','31903190DP07'),
-('97827401Y','Audrey','J. Douglas','730864430','C/ Los Herrán, 71 06260 Monesterio','19/08/1970','AudreyJDouglas@superrito.com','00500149DP02');
+('26304527W','Ruth','Stiefel','5076970812','4632 Trymore, 56283','14/08/1999','ErnieTWilson@superrito.com','21003029DP03'),
+('14296427H','Oscar','K. Rickard','635013406','Pza. Fuensanta, 1832360 A Veiga','06/11/1982','OscarKRickard@superrito.com','21003029DP03'),
+('99145427V','Edna','C. Mahoney','646645175','Matilla de los Caños del Río','21/08/1996','EdnaCMahoney@gustr.com','00010081DP01'),
+('54422668E','Cynthia','B. Alexander','626080665','Gejuelo del Barro','29/11/1981','CynthiaBAlexander@gustr.com','00020128DP06'),
+('52168315Z','Craig','R. Douglass','729296873','Avendaño, 52 03820 Cocentaina','25/08/1980','CraigRDouglass@gustr.com','30593059DP06'),
+('12018971E','Eric','D. Stepp','695701198','Paseo Junquera, 84 12527 Artana','25/02/1991','EricDStepp@gustr.com','00500149DP02'),
+('45965418X','Rebeca','K. Wenz','751755631','Alcon Molina, 36 31110 Valle de Elorz Noáin','01/01/1992','RebeccaKWenz@gustr.com','30453045DP04'),
+('54377478G','Kendra','R. Crutcher','725552211','Eusebio Dávila, 40 41550 Aguadulce','10/05/1972','KendraRCrutcher@superrito.com','01820182DP05'),
+('00403835R','Tania','C. Grout','607347696','Paseo del Atlántico, 7117520 Puigcerdà','07/01/1995','ThanhCGrout@gustr.com','31903190DP01'),
+('97827401Y','Audrey','J. Douglas','730864430','C/ Los Herrán, 71 06260 Monesterio','19/08/1970','AudreyJDouglas@superrito.com','00500149DP03');
 
 INSERT INTO entrevistar(id_trabajador,id_sucursal,id_entidad_bancaria,fecha)
 VALUES
@@ -511,13 +522,64 @@ VALUES
 ('ES43900090004110000000009','CORRIENTE',739389,5,'9000','9000','2013-08-25'),
 ('ES5131903190680000000010','AHORRO',486723,4,'3190','3190','2014-11-29');
 
-SELECT id_trabajador,fecha_nac
-FROM trabajador
-LIMIT 5;
+INSERT INTO cajero(localización,deposito,id_sucursal,id_entidad_bancaria)
+VALUES
+('41.47339355, 2.08427550939799',300089.56,'0001','0081'),
+('38.3459963, -0.4906855',845095.35,'0108','1544'),
+('43.3645309, -5.8503733',626869.02,'3059','3059'),
+('43.2599364, -2.9229618',664193.16,'0182','0182'),
+('40.4595272, -3.6162759',502202.79,'0050','0149'),
+('39.7605277, -5.0240869',581212.52,'0002','0128'),
+('41.38871555, 2.15537750203024',915471.85,'2100','3029'),
+('38.600793, -0.051204',763899.42,'3045','3045'),
+('-38.7348929, -72.6235671',322944.14,'9000','9000'),
+('39.8713273, -4.0274143',899931.24,'3190','3190');
+
+INSERT INTO director(id_trabajador)
+VALUES
+(3),
+(4),
+(5);
+
+INSERT INTO supervisar(supervisor1,supervisor2)
+VALUES
+(3,5);
+
+INSERT INTO administrativo(id_trabajador)
+VALUES
+(1);
+
+INSERT INTO gestor(id_trabajador,especialidad)
+VALUES
+(6,'Plusvalias.');
+
+INSERT INTO contable(id_trabajador)
+VALUES
+(2);
+
+INSERT INTO prestamista(id_trabajador)
+VALUES
+(7),
+(8);
+
+INSERT INTO guardia(id_trabajador,anyos_antiguedad,armado)
+VALUES
+(9,3,'Si.'),
+(10,5,'No.');
+
+SELECT CONCAT(t.nombre,' ',t.apellidos) AS Nombre_completo,t.id_oficina,o.*
+FROM oficina o, trabajador t
+WHERE t.id_oficina = o.id_oficina
+ORDER BY seccion;
+
+SELECT SUBSTRING(id_oficina,9,4), seccion
+FROM oficina
+ORDER BY id_oficina ASC
+LIMIT 8;
 
 SELECT *
 FROM cuenta_bancaria
 ORDER BY id_cuenta;
 
 SELECT *
-FROM tarjeta;
+FROM cajero;
