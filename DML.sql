@@ -567,7 +567,20 @@ VALUES
 (9,3,'Si.'),
 (10,5,'No.');
 
-
+INSERT INTO contrato(id_trabajador,id_sucursal,id_entidad_bancaria,clausulas,fecha_contratación)
+VALUES
+(1,'2100','3029','Prestar asistencia permanente al franquiciado, durante toda la vigencia del presente
+contrato, para desarrollar sus actividades con la calidad y características propias del
+negocio del franquiciador','19-08-2018'),
+(2,'2100','3029','','06-06-2019'),
+(3,'0001','0081','','27-05-2021'),
+(4,'0002','0128','','23-04-2018'),
+(5,'3059','3059','','03-02-2018'),
+(6,'0050','0149','','10-03-2021'),
+(7,'3045','3045','','13-03-2018'),
+(8,'0182','0182','','26-11-2021'),
+(9,'3190','3190','','28-09-2019'),
+(10,'0050','0149','','20-12-2018');
 
 SELECT CONCAT(t.nombre,' ',t.apellidos) AS Nombre_completo,t.id_oficina,o.*
 FROM oficina o, trabajador t
@@ -584,4 +597,4 @@ FROM cuenta_bancaria
 ORDER BY id_cuenta;
 
 SELECT *
-FROM cajero;
+FROM contrato;
