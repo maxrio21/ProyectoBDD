@@ -101,7 +101,8 @@ CREATE TABLE trabajador(--
 
 CREATE TABLE entrevistar(
 	id_trabajador int,
-	id_sucursal varchar(4),
+	id_sucursal varchar(4) NOT NULL,
+	id_entidad_bancaria varchar(4) NOT NULL,
 	fecha date,
 	
 	CONSTRAINT pk_entrevistar PRIMARY KEY (id_trabajador,id_sucursal),
