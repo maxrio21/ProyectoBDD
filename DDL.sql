@@ -220,7 +220,7 @@ CREATE TABLE cuenta_corriente(--
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE crear_tarjeta(
+CREATE TABLE crear_tarjeta(--
 	id_cliente int,
 	id_cc int,
 	id_sucursal varchar(4),
@@ -242,7 +242,7 @@ CREATE TABLE crear_tarjeta(
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE crear_cuenta(
+CREATE TABLE crear_cuenta(--
 	id_cuenta SERIAL,
 	iban varchar(26),
 	tipo varchar(100),
@@ -265,7 +265,7 @@ CREATE TABLE crear_cuenta(
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE cajero(
+CREATE TABLE cajero(--
 	id_cajero SERIAL,
 	localización varchar(200),
 	deposito decimal(30,2),
