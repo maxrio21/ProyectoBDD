@@ -9,7 +9,7 @@ cajero,oficina,director,supervisar,
 administrativo,contable,gestor,entrevistar,contrato;
 
 
-CREATE TABLE cliente(
+CREATE TABLE cliente(--
 	id_cliente SERIAL,
 	dni varchar(9) CHECK (LENGTH(dni) = 9),
 	nombre varchar(50),
@@ -21,7 +21,7 @@ CREATE TABLE cliente(
 	CONSTRAINT pk_cliente PRIMARY KEY(id_cliente)
 );
 
-CREATE TABLE caja_fuerte(
+CREATE TABLE caja_fuerte(--
 	id_caja SERIAL,
 	m2 decimal(4,2),
 	contraseña varchar(6) CHECK (LENGTH(contraseña) = 6),
@@ -30,7 +30,7 @@ CREATE TABLE caja_fuerte(
 	CONSTRAINT pk_caja_fuerte PRIMARY KEY(id_caja)
 );
 
-CREATE TABLE alquilar(
+CREATE TABLE alquilar(--
 	id_caja int,
 	id_cliente int,
 	fecha_inicio date,
@@ -45,14 +45,14 @@ CREATE TABLE alquilar(
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE entidad_bancaria(
+CREATE TABLE entidad_bancaria(--
 	codigo varchar(4),
 	nombre varchar(50),
 	
 	CONSTRAINT pk_entidad_bancaria PRIMARY KEY (codigo)
 );
 
-CREATE TABLE sucursal(
+CREATE TABLE sucursal(--
 	id_sucursal varchar(4),
 	dirección varchar(200),
 	ciudad varchar(50),
@@ -66,7 +66,7 @@ CREATE TABLE sucursal(
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE oficina(
+CREATE TABLE oficina(--
 	id_oficina varchar(12),
 	seccion varchar(50),
 	m2 numeric,
@@ -142,7 +142,7 @@ CREATE TABLE debito(
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE cuenta_bancaria(
+CREATE TABLE cuenta_bancaria(--
 	id_cuenta SERIAL,
 	iban varchar(26),
 	deposito decimal(15,2),
