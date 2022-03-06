@@ -13,6 +13,8 @@ DELETE FROM credito;
 DELETE FROM debito;
 DELETE FROM realizar_operacion;
 DELETE FROM factura;
+DELETE FROM cuenta_ahorro;
+DELETE FROM cuenta_corriente;
 
 --Reinicia a 1 los autoincrementables en caso de borrado
 ALTER SEQUENCE cliente_id_cliente_seq RESTART WITH 1;
@@ -471,5 +473,23 @@ VALUES
 ('17-11-2021',5,5),
 ('31-01-2021',5,5);
 
+INSERT INTO cuenta_ahorro(id_cuenta)
+VALUES
+(3),
+(4),
+(6),
+(7),
+(10);
+
+INSERT INTO cuenta_corriente(id_cuenta)
+VALUES
+(1),
+(2),
+(5),
+(8),
+(9);
+
 SELECT *
-FROM factura;
+FROM cuenta_bancaria
+ORDER BY tipo
+
