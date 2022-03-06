@@ -114,7 +114,7 @@ CREATE TABLE entrevistar(--
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE tarjeta(
+CREATE TABLE tarjeta(--
 	id_tarjeta SERIAL,
 	titular varchar(50),
 	cvv numeric(3) CHECK (LENGTH(CAST(cvv AS VARCHAR)) = 3),
@@ -128,7 +128,7 @@ CREATE TABLE tarjeta(
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE credito(
+CREATE TABLE credito(--
 	id_tarjeta int,
 	
 	CONSTRAINT pk_credito PRIMARY KEY (id_tarjeta),
@@ -137,7 +137,7 @@ CREATE TABLE credito(
 	ON UPDATE CASCADE
 );
 
-CREATE TABLE debito(
+CREATE TABLE debito(--
 	id_tarjeta int,
 	
 	CONSTRAINT pk_debito PRIMARY KEY (id_tarjeta),
