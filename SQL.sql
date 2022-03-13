@@ -37,8 +37,14 @@ WHERE supervisor1 = 3;
 UPDATE cliente
 SET correo = 'miguel.saldana@hotmail.com'
 WHERE id_cliente = 3;
+
 --b.2.1 - DELETE
+DELETE FROM realizar_operacion
+WHERE id_operacion = 18
+
 --b.2.2 - DELETE
+DELETE FROM gestor
+WHERE UPPER(especialidad) LIKE '%PLUSVALIAS%'
 
 --c.1
 SELECT CONCAT(cl.nombre,' ',cl.apellidos) AS cliente,cu.iban,cu.deposito,cu.tipo,cu.contraseña
