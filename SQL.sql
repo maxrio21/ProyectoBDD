@@ -59,7 +59,6 @@ d.1
 Queremos saber el nombre, apellidos y el IBAN 
 de la persona con más dinero en su cuenta bancaria.
 */
-
 SELECT CONCAT(cl.nombre,' ',cl.apellidos),c.iban,c.deposito
 FROM cuenta_bancaria c, cliente cl
 WHERE 
@@ -92,7 +91,6 @@ d.3
 Queremos saber la media de metros cuadrados
 de todas las cajas fuertes del banco.
 */
-
 SELECT AVG(m2) AS tamaño
 FROM caja_fuerte;
 
@@ -112,7 +110,6 @@ Queremos la suma del deposito total de todas
 las cuentas bancarias por usuario ordenado
 de mayor a menor
 */
-
 SELECT CONCAT(c.nombre,' ',c.apellidos) AS cliente, SUM(deposito) AS total
 FROM cuenta_bancaria cu,cliente c
 WHERE cu.id_cliente = c.id_cliente
@@ -125,7 +122,6 @@ Queremos saber la primera factura efectuada
 por un cliente, el nombre completo del cliente,
 la fecha y su iban.
 */
-
 SELECT f.id_factura AS factura,f.fecha,CONCAT(c.nombre,' ',c.apellidos) AS cliente,cu.iban
 FROM factura f, cliente c, cuenta_bancaria cu
 WHERE 
@@ -157,4 +153,27 @@ HAVING COUNT(t.id_oficina) =
 			GROUP BY (t.id_oficina)
 		)S 
 	);
+
+/*
+g.1
+*/
+
+/*
+g.2
+*/
+
+/*
+h.1
+*/
+
+/*
+h.2
+*/
+
+/*
+h.3
+*/
+
+
+
 
