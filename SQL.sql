@@ -185,16 +185,48 @@ FROM cuenta_bancaria
 
 /*
 h.1
+Cambia el telefono de telefono al
+trabajador que empieza por la 
+letra T
 */
+UPDATE trabajador
+SET telefono = 666666666
+WHERE nombre =
+	(
+		SELECT nombre
+		FROM trabajador
+		WHERE 
+		UPPER(nombre) LIKE 'T%'
+	); 
 
 /*
 h.2
+Cambiar la clasula de contrato al ultimo trabajador 
 */
+UPDATE contrato
+SET clausulas = 'Asistir a potenciales clientes como asistente personal.'
+WHERE id_trabajador = 
+	(
+		SELECT MAX(id_trabajador)
+		FROM trabajador
+	);
 
 /*
 h.3
+Modifica la fecha final de alquiler
+de la caja fuerte nº5 a 2020-01-01
 */
+SELECT *
+FROM alquilar
 
+UPDATE alquilar
+SET fecha_fin = '2020-01-01'
+WHERE id_caja =
+	(
+		SELECT id_caja 
+		FROM alquilar
+		WHERE id_caja = 5
+	);
 
 
 
