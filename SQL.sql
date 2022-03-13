@@ -95,3 +95,28 @@ de todas las cajas fuertes del banco.
 
 SELECT AVG(m2) AS tamaño
 FROM caja_fuerte;
+
+/*
+e.1
+Queremos saber cuantos trabajadores hay 
+en cada oficina segun su especialidad.
+*/
+SELECT o.seccion, COUNT(t.*) AS trabajadores
+FROM trabajador t, oficina o
+WHERE t.id_oficina = o.id_oficina
+GROUP BY (o.seccion);
+
+/*
+e.2
+Queremos la suma del deposito total de todas
+las cuentas bancarias por usuario ordenado
+de mayor a menor
+*/
+
+SELECT CONCAT(c.nombre,' ',c.apellidos) AS cliente, SUM(deposito) AS total
+FROM cuenta_bancaria cu,cliente c
+WHERE cu.id_cliente = c.id_cliente
+GROUP BY c.nombre,c.apellidos
+ORDER BY SUM(deposito) DESC
+
+
