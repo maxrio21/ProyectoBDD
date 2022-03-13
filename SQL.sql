@@ -167,9 +167,21 @@ FROM entrevistar e, entidad_bancaria eb
 WHERE eb.codigo = e.id_entidad_bancaria
 GROUP BY (eb.codigo,eb.nombre)
 HAVING COUNT(eb.nombre) > 1;
+
 /*
 g.2
+Muestra el tipo de cuenta bancaria
+que tenga más de tres cuentas los cuales
+tengan un deposito superior a 2000€
 */
+SELECT tipo, COUNT(*)
+FROM cuenta_bancaria
+WHERE deposito > 2000
+GROUP BY tipo
+HAVING COUNT(*) > 3 
+
+SELECT *
+FROM cuenta_bancaria
 
 /*
 h.1
