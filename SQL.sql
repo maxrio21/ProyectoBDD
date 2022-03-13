@@ -1,52 +1,94 @@
---a.1
+/*
+a.1
+Muestra toda la infomacion de los clientes
+que su dominio en su email contenga hotmail.
+*/
 SELECT *
 FROM CLIENTE
 WHERE correo LIKE '%hotmail%';
 
---a.2
+/*
+a.2
+Muestra toda la informacion de las entidades
+bancarias que sean superiores al codigo 0300.
+*/
 SELECT *
 FROM ENTIDAD_BANCARIA
 WHERE codigo > '0300'
 ORDER BY (nombre);
 
---a.3
+/*
+a.3
+Muestra la informacion de la sucursal
+que su provincia no sea madrid y que
+la ciudad donde esta situada sea alicante.
+*/
 SELECT *
 FROM SUCURSAL
 WHERE 
 provincia NOT LIKE '%MADRID%' AND 
 ciudad = 'ALICANTE';
 
---a.4
+/*
+a.4
+Muestra todas las cuentas bancarias que
+sean de tipo corriente.
+*/
 SELECT *
 FROM CUENTA_BANCARIA
 WHERE 
 tipo = 'CORRIENTE' AND 
 id_cuenta BETWEEN 1 AND 5;
 
---a.5
+/*
+a.5
+Muestra todos los contratos
+los cuales no esten vacios.
+*/
 SELECT *
 FROM CONTRATO
 WHERE clausulas NOT LIKE '';
 
---b.1.1 - UPDATE
+/*
+b.1.1 - UPDATE
+Actualiza la informacion del supervisor 3
+y que el supervisor 5 al haber sido degradado
+ahora será el numero 3 su supervisor.
+*/
 UPDATE supervisar
 SET supervisor1 = 5, supervisor2 = 3
 WHERE supervisor1 = 3;
 
---b.1.2 - UPDATE
+/*
+b.1.2 - UPDATE
+Actualiza el correo del cliente numero 3
+al correo: miguel.saldana@hotmail.com.
+*/
 UPDATE cliente
 SET correo = 'miguel.saldana@hotmail.com'
 WHERE id_cliente = 3;
 
---b.2.1 - DELETE
+/*
+b.2.1 - DELETE
+Borra la operacion nº 18
+de la base de datos.
+*/
 DELETE FROM realizar_operacion
 WHERE id_operacion = 18
 
---b.2.2 - DELETE
+/*
+b.2.2 - DELETE
+Borra el gestor que su especialidad
+sea plusvalias.
+*/
 DELETE FROM gestor
 WHERE UPPER(especialidad) LIKE '%PLUSVALIAS%'
 
---c.1
+/*
+c.1
+Muestra el nombre completo, el iban, su deposito, el tipo de cuenta y la contraseña
+de los dueños de las cuentas bancarias.
+*/
 SELECT CONCAT(cl.nombre,' ',cl.apellidos) AS cliente,cu.iban,cu.deposito,cu.tipo,cu.contraseña
 FROM CLIENTE cl, CUENTA_BANCARIA cu
 WHERE 
@@ -237,3 +279,6 @@ WHERE id_caja =
 		FROM alquilar
 		WHERE id_caja = 5
 	);
+
+
+
