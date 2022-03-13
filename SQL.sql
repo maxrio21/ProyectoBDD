@@ -156,8 +156,17 @@ HAVING COUNT(t.id_oficina) =
 
 /*
 g.1
+Queremos saber el codigo y nombre de las entidades bancarias
+que han entrevisado más de 2 trabajadores.
 */
+SELECT *
+FROM entrevistar;
 
+SELECT eb.codigo,eb.nombre,COUNT(e.id_trabajador) AS trabajadores
+FROM entrevistar e, entidad_bancaria eb
+WHERE eb.codigo = e.id_entidad_bancaria
+GROUP BY (eb.codigo,eb.nombre)
+HAVING COUNT(eb.nombre) > 1;
 /*
 g.2
 */
