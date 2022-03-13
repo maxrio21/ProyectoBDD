@@ -53,3 +53,45 @@ WHERE
 o.id_oficina = t.id_oficina AND
 o.id_sucursal = s.id_sucursal AND
 o.id_entidad_bancaria = e.codigo;
+
+/*
+d.1 
+Queremos saber el nombre, apellidos y el IBAN 
+de la persona con más dinero en su cuenta bancaria.
+*/
+
+SELECT CONCAT(cl.nombre,' ',cl.apellidos),c.iban,c.deposito
+FROM cuenta_bancaria c, cliente cl
+WHERE 
+c.id_cliente = cl.id_cliente AND
+deposito =
+	(
+		SELECT MAX(deposito)
+		FROM cuenta_bancaria
+	);
+	
+/*
+d.2
+Queremos saber el nombre y apellidos del cliente, su iban,
+la cantidad, la fecha y el tipo de la primera operación que
+se hizo en nuestro sistema bancario.
+*/
+SELECT CONCAT(cl.nombre,' ',cl.apellidos) AS cliente,cu.iban,ro.cantidad,ro.fecha,ro.tipo
+FROM realizar_operacion ro,cuenta_bancaria cu,cliente cl
+WHERE 
+ro.id_cliente = cl.id_cliente AND
+ro.id_cuenta = cu.id_cuenta AND
+ro.fecha = 
+	(
+		SELECT MIN(fecha)
+		FROM realizar_operacion
+	);
+
+/*
+d.3
+Queremos saber la media de metros cuadrados
+de todas las cajas fuertes del banco.
+*/
+
+SELECT AVG(m2) AS tamaño
+FROM caja_fuerte;
