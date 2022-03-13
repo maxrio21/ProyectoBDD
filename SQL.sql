@@ -28,8 +28,17 @@ SELECT *
 FROM CONTRATO
 WHERE clausulas NOT LIKE '';
 
---b.1
---b.2
+--b.1.1 - UPDATE
+UPDATE supervisar
+SET supervisor1 = 5, supervisor2 = 3
+WHERE supervisor1 = 3;
+
+--b.1.2 - UPDATE
+UPDATE cliente
+SET correo = 'miguel.saldana@hotmail.com'
+WHERE id_cliente = 3;
+--b.2.1 - DELETE
+--b.2.2 - DELETE
 
 --c.1
 SELECT CONCAT(cl.nombre,' ',cl.apellidos) AS cliente,cu.iban,cu.deposito,cu.tipo,cu.contraseña
@@ -159,8 +168,6 @@ g.1
 Queremos saber el codigo y nombre de las entidades bancarias
 que han entrevisado más de 2 trabajadores.
 */
-SELECT *
-FROM entrevistar;
 
 SELECT eb.codigo,eb.nombre,COUNT(e.id_trabajador) AS trabajadores
 FROM entrevistar e, entidad_bancaria eb
@@ -179,9 +186,6 @@ FROM cuenta_bancaria
 WHERE deposito > 2000
 GROUP BY tipo
 HAVING COUNT(*) > 3 
-
-SELECT *
-FROM cuenta_bancaria
 
 /*
 h.1
@@ -227,6 +231,3 @@ WHERE id_caja =
 		FROM alquilar
 		WHERE id_caja = 5
 	);
-
-
-
