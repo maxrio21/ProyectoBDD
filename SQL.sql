@@ -117,6 +117,44 @@ SELECT CONCAT(c.nombre,' ',c.apellidos) AS cliente, SUM(deposito) AS total
 FROM cuenta_bancaria cu,cliente c
 WHERE cu.id_cliente = c.id_cliente
 GROUP BY c.nombre,c.apellidos
-ORDER BY SUM(deposito) DESC
+ORDER BY SUM(deposito) DESC;
 
+/*
+f.1
+Queremos saber la primera factura efectuada 
+por un cliente, el nombre completo del cliente,
+la fecha y su iban.
+*/
+
+SELECT f.id_factura AS factura,f.fecha,CONCAT(c.nombre,' ',c.apellidos) AS cliente,cu.iban
+FROM factura f, cliente c, cuenta_bancaria cu
+WHERE 
+f.id_cliente = c.id_cliente AND
+f.id_cuenta = cu.id_cuenta AND 
+f.fecha = 
+	(
+		SELECT MIN(fecha)
+		FROM factura
+	);
+
+
+/*
+f.2
+Queremos saber la oficina con la especialidad x
+que tenga el maximo de trabajadores asignados.
+*/
+SELECT o.seccion AS especialidad
+FROM trabajador t, oficina o
+WHERE t.id_oficina = o.id_oficina
+GROUP BY (o.id_oficina)
+HAVING COUNT(t.id_oficina) = 
+	(
+		SELECT MAX(S.n) 
+		FROM 
+		(
+			SELECT COUNT(t.id_oficina) AS n 
+			FROM trabajador t
+			GROUP BY (t.id_oficina)
+		)S 
+	);
 
