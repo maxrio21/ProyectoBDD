@@ -95,7 +95,11 @@ WHERE
 cl.id_cliente = cu.id_cliente
 ORDER BY deposito ASC;
 
---c.2
+/*
+c.2
+Muestra el nombre completo del cliente, su iban, la cantidad monetaria, 
+la fecha de la operacion y el tipo de operacion.
+*/
 SELECT CONCAT(c.nombre,' ',c.apellidos) AS cliente,cb.iban,r.cantidad, r.fecha, r.tipo 
 FROM REALIZAR_OPERACION r, CLIENTE c, CUENTA_BANCARIA cb
 WHERE 
@@ -103,7 +107,12 @@ r.id_cliente = c.id_cliente AND
 r.id_cuenta = cb.id_cuenta
 ORDER BY cantidad ASC;
 
---c.3
+/*
+c.3
+Muesta el nombre completo los clientes, telefono, email,
+la oficina a la que pertenece, su seccion, la sucursal en la que trabaja
+y la entidad a la que pertenece.
+*/
 SELECT CONCAT(t.nombre,' ',t.apellidos) AS trabajador,t.telefono,t.correo AS correo_electronico,o.id_oficina AS oficina,o.seccion AS especialidad,o.id_sucursal AS sucursal,e.nombre AS banco
 FROM trabajador t, oficina o, sucursal s, entidad_bancaria e
 WHERE 
@@ -216,7 +225,6 @@ g.1
 Queremos saber el codigo y nombre de las entidades bancarias
 que han entrevisado más de 2 trabajadores.
 */
-
 SELECT eb.codigo,eb.nombre,COUNT(e.id_trabajador) AS trabajadores
 FROM entrevistar e, entidad_bancaria eb
 WHERE eb.codigo = e.id_entidad_bancaria
@@ -279,6 +287,5 @@ WHERE id_caja =
 		FROM alquilar
 		WHERE id_caja = 5
 	);
-
 
 
