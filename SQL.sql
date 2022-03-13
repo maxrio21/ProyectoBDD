@@ -44,13 +44,12 @@ FROM REALIZAR_OPERACION r, CLIENTE c, CUENTA_BANCARIA cb
 WHERE 
 r.id_cliente = c.id_cliente AND
 r.id_cuenta = cb.id_cuenta
-ORDER BY cantidad ASC
+ORDER BY cantidad ASC;
 
-SELECT *
-FROM FACTURA
-
-SELECT *
-FROM CUENTA_BANCARIA
-
-SELECT *
-FROM CLIENTE
+--c.3
+SELECT CONCAT(t.nombre,' ',t.apellidos) AS trabajador,t.telefono,t.correo AS correo_electronico,o.id_oficina AS oficina,o.seccion AS especialidad,o.id_sucursal AS sucursal,e.nombre AS banco
+FROM trabajador t, oficina o, sucursal s, entidad_bancaria e
+WHERE 
+o.id_oficina = t.id_oficina AND
+o.id_sucursal = s.id_sucursal AND
+o.id_entidad_bancaria = e.codigo;
